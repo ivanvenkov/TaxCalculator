@@ -6,7 +6,7 @@ namespace TaxCalculator.Infrastructure
 {
     public static class InputValidator
     {
-        public static decimal ValidateInput(string input)
+        public static decimal Validate(string input)
         {
             //input = Console.ReadLine().ToLower();
             if (input == null)
@@ -15,16 +15,7 @@ namespace TaxCalculator.Infrastructure
             }
             decimal grossSalary;
 
-            if (input.ToLower() == "exit")
-            {
-                Console.WriteLine("Do you want to exit the program? Y/N");
-                var answer = Console.ReadLine().ToLower();
-                if (answer == "y")
-                {
-                    Environment.Exit(0);
-                }
-            }
-
+            
             bool getCorrrectSalary = decimal.TryParse(input, out grossSalary);
 
             if (grossSalary <= 0)

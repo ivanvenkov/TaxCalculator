@@ -21,13 +21,22 @@ namespace TaxCalculator
             {
                 Console.Write("Please enter the gross salary figure:");
                 var input = Console.ReadLine();
-                //var grossSalary = InputValidator.ValidateInput(input);
-
+                
+                if (input.ToLower() == "exit")
+                {
+                    Console.WriteLine("Do you want to exit the program? Y/N");
+                    var answer = Console.ReadLine().ToLower();
+                    if (answer == "y")
+                    {
+                        Environment.Exit(0);
+                    }
+                }
+                
                 try
                 {
-                    var grossSalary = InputValidator.ValidateInput(input);
-                    var res = this.taxCalculatorService.CalculateNetSalary(grossSalary);
-                    Printer.PrintResult(res);
+                    var grossSalary = InputValidator.Validate(input);
+                    var result = this.taxCalculatorService.CalculateNetSalary(grossSalary);
+                    Console.WriteLine(Printer.PrintResult(result));
                 }
                 catch (ArgumentException ex)
                 {

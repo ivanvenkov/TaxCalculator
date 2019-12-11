@@ -1,5 +1,4 @@
-﻿using System;
-using TaxCalculator.Contracts;
+﻿using TaxCalculator.Contracts;
 using TaxCalculator.Infrastructure;
 
 namespace TaxCalculator.Services
@@ -17,7 +16,7 @@ namespace TaxCalculator.Services
         {
             decimal sscAmount;
 
-            var taxCalculation = new Calculation(grossSalary); //exception handling
+            var taxCalculation = new Calculation(grossSalary);
 
             if (grossSalary <= 1000)
             {
