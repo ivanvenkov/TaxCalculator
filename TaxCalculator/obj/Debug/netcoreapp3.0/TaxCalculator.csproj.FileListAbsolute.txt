@@ -11,3 +11,16 @@ E:\Downloads\JOBS\TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalcula
 E:\Downloads\JOBS\TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.pdb
 E:\Downloads\JOBS\TaxCalculator\TaxCalculator\bin\Debug\netcoreapp3.0\Autofac.dll
 E:\Downloads\JOBS\TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.csproj.CopyComplete
+E:\Tests_TaxCalculator\TaxCalculator\bin\Debug\netcoreapp3.0\TaxCalculator.exe
+E:\Tests_TaxCalculator\TaxCalculator\bin\Debug\netcoreapp3.0\TaxCalculator.deps.json
+E:\Tests_TaxCalculator\TaxCalculator\bin\Debug\netcoreapp3.0\TaxCalculator.runtimeconfig.json
+E:\Tests_TaxCalculator\TaxCalculator\bin\Debug\netcoreapp3.0\TaxCalculator.runtimeconfig.dev.json
+E:\Tests_TaxCalculator\TaxCalculator\bin\Debug\netcoreapp3.0\TaxCalculator.dll
+E:\Tests_TaxCalculator\TaxCalculator\bin\Debug\netcoreapp3.0\TaxCalculator.pdb
+E:\Tests_TaxCalculator\TaxCalculator\bin\Debug\netcoreapp3.0\Autofac.dll
+E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.csprojAssemblyReference.cache
+E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.AssemblyInfoInputs.cache
+E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.AssemblyInfo.cs
+E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.csproj.CopyComplete
+E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.dll
+E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.pdb

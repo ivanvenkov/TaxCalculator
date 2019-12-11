@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Downloads\\JOBS\\TaxCalculator\\TaxCalculator\\TaxCalculator.csproj": {}
+    "E:\\Tests_TaxCalculator\\TaxCalculator\\TaxCalculator.csproj": {}
   },
   "projects": {
-    "E:\\Downloads\\JOBS\\TaxCalculator\\TaxCalculator\\TaxCalculator.csproj": {
+    "E:\\Tests_TaxCalculator\\TaxCalculator\\TaxCalculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Downloads\\JOBS\\TaxCalculator\\TaxCalculator\\TaxCalculator.csproj",
+        "projectUniqueName": "E:\\Tests_TaxCalculator\\TaxCalculator\\TaxCalculator.csproj",
         "projectName": "TaxCalculator",
-        "projectPath": "E:\\Downloads\\JOBS\\TaxCalculator\\TaxCalculator\\TaxCalculator.csproj",
+        "projectPath": "E:\\Tests_TaxCalculator\\TaxCalculator\\TaxCalculator.csproj",
         "packagesPath": "C:\\Users\\ivanv\\.nuget\\packages\\",
-        "outputPath": "E:\\Downloads\\JOBS\\TaxCalculator\\TaxCalculator\\obj\\",
+        "outputPath": "E:\\Tests_TaxCalculator\\TaxCalculator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
