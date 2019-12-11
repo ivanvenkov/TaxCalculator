@@ -24,3 +24,4 @@ E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.Assem
 E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.csproj.CopyComplete
 E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.dll
 E:\Tests_TaxCalculator\TaxCalculator\obj\Debug\netcoreapp3.0\TaxCalculator.pdb
+E:\Tests_TaxCalculator\TaxCalculator\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll

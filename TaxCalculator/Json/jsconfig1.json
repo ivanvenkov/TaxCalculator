@@ -1,0 +1,8 @@
+[
+  {
+    "IncomeTaxRate": 0.1,
+    "SSCRate": 0.15,
+    "IncomeTaxThreshold": 1000,
+    "SscThreshold": 3000
+  }
+]

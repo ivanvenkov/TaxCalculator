@@ -1,49 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TaxCalculator.Contracts;
 using TaxCalculator.Infrastructure;
 
-namespace TaxCalculator
+namespace TaxCalculator.Infrastructure
 {
-    public class Engine
+    public class Engine : IEngine
     {
         private readonly ITaxCalculatorService taxCalculatorService;
+        private readonly IReader reader;
+        private readonly IWriter writer;
 
-        public Engine(ITaxCalculatorService taxCalculatorService)
+        public Engine(ITaxCalculatorService taxCalculatorService, IReader reader, IWriter writer)
         {
             this.taxCalculatorService = taxCalculatorService;
+            this.reader = reader;
+            this.writer = writer;
         }
 
         public void Run()
         {
             while (true)
             {
-                Console.Write("Please enter the gross salary figure:");
-                var input = Console.ReadLine();
-                
+                WriteCommand("Please enter the gross salary figure:");
+                var input = ReadCommand();
+
                 if (input.ToLower() == "exit")
                 {
-                    Console.WriteLine("Do you want to exit the program? Y/N");
-                    var answer = Console.ReadLine().ToLower();
+                    WriteCommand("Do you want to exit the program? Y/N");
+                    var answer = ReadCommand().ToLower();
                     if (answer == "y")
                     {
                         Environment.Exit(0);
                     }
                 }
-                
+
                 try
                 {
                     var grossSalary = InputValidator.Validate(input);
                     var result = this.taxCalculatorService.CalculateNetSalary(grossSalary);
-                    Console.WriteLine(Printer.PrintResult(result));
+                    WriteCommand(Printer.PrintResult(result));
                 }
                 catch (ArgumentException ex)
                 {
 
-                    Console.WriteLine(ex.Message);
+                    WriteCommand(ex.Message);
                 }
             }
+        }
+        private string ReadCommand()
+        {
+            return this.reader.Read();
+        }
+        private void WriteCommand(string message)
+        {
+           this.writer.Write(message);
         }
     }
 }

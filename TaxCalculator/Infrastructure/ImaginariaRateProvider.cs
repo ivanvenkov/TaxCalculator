@@ -1,4 +1,6 @@
-﻿using TaxCalculator.Contracts;
+﻿using Newtonsoft.Json;
+using System.IO;
+using TaxCalculator.Contracts;
 
 namespace TaxCalculator.Infrastructure
 {
@@ -17,6 +19,11 @@ namespace TaxCalculator.Infrastructure
             this.SscThreshold = sscThreshold;
         }
 
+
+        //string rates =
+        //             File.ReadAllText(@"..\TaxCalculator\Json\jsconfig1.json");
+        //ImaginariaRateProvider test =
+        //           JsonConvert.DeserializeObject<ImaginariaRateProvider[]>(rates);
         public decimal IncomeTaxRate
         {
             get => this.incomeTaxRate;
