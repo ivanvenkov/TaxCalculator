@@ -20,30 +20,13 @@ namespace TaxCalculator.Infrastructure
         }
 
 
-        //string rates =
-        //             File.ReadAllText(@"..\TaxCalculator\Json\jsconfig1.json");
-        //ImaginariaRateProvider test =
-        //           JsonConvert.DeserializeObject<ImaginariaRateProvider[]>(rates);
-        public decimal IncomeTaxRate
-        {
-            get => this.incomeTaxRate;
-            set { incomeTaxRate = 0.1m; }
-        }
-        public decimal SSCRate
-        {
-            get => this.sscRate;
-            set { sscRate = 0.15m; }
-        }
-
-        public decimal IncomeTaxThreshold
-        {
-            get => this.incomeTaxThreshold;
-            set { incomeTaxThreshold = 1000m; }
-        }
-        public decimal SscThreshold
-        {
-            get => this.sscThreshold;
-            set { sscThreshold = 3000m; }
-        }
+        public decimal IncomeTaxRate { get; set; }
+        
+        public decimal SSCRate { get; set; }
+       
+        public decimal IncomeTaxThreshold { get; set; }
+        
+        public decimal SscThreshold { get; set; }
+       
     }
 }
