@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.IO;
 using TaxCalculator.Contracts;
 using TaxCalculator.Infrastructure;
@@ -10,18 +9,15 @@ namespace TaxCalculator.Services
     {
         private IRatesProvider ratesProvider;
 
-        //public TaxCalculatorService()
-        //{
-        //}
-
         public TaxCalculatorService(IRatesProvider ratesProvider)
         {
             this.ratesProvider = LoadJson(ratesProvider);
-        }
+        }              
 
         public Calculation CalculateNetSalary(decimal grossSalary)
         {
             decimal sscAmount;
+                          
 
             var taxCalculation = new Calculation(grossSalary);
 
@@ -48,15 +44,14 @@ namespace TaxCalculator.Services
             return taxCalculation;
         }
 
-        public IRatesProvider LoadJson(IRatesProvider ratesProvider)
+        private IRatesProvider LoadJson(IRatesProvider ratesProvider)
         {
 
-            string rates = File.ReadAllText(@"..\TaxCalculator\Json\rates.json");
+            string rates = File.ReadAllText(@"..\..\..\Json\rates.json");
 
             ratesProvider = JsonConvert.DeserializeObject<ImaginariaRateProvider>(rates);
 
             return ratesProvider;
-
         }
     }
 }
