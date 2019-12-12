@@ -1,4 +1,4 @@
-﻿using TaxCalculator.Infrastructure;
+﻿using TaxCalculator.Models;
 
 namespace TaxCalculator.Contracts
 {

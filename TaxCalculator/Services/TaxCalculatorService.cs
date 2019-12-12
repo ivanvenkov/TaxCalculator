@@ -1,8 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.IO;
-using TaxCalculator.Contracts;
-using TaxCalculator.Infrastructure;
+﻿using TaxCalculator.Contracts;
+using TaxCalculator.Models;
 
 namespace TaxCalculator.Services
 {
@@ -22,13 +19,13 @@ namespace TaxCalculator.Services
 
             var taxCalculation = new Calculation(grossSalary);
 
-            if (grossSalary <= 1000)
+            if (grossSalary <= rate.IncomeTaxThreshold)
             {
                 taxCalculation.NetSalary = grossSalary;
             }
             else
             {
-                if (grossSalary > rate.IncomeTaxThreshold && grossSalary <= rate.SscThreshold)
+                if (grossSalary <= rate.SscThreshold)
                 {
                     sscAmount = (grossSalary - rate.IncomeTaxThreshold) * rate.SSCRate;
                 }

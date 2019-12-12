@@ -10,13 +10,7 @@ namespace TaxCalculator
         public static void Main()
         {
             var containerBuilder = new ContainerBuilder();
-
-            containerBuilder.RegisterType<RatesProvider>().As<IRatesProvider>();
-            containerBuilder.RegisterType<TaxCalculatorService>().As<ITaxCalculatorService>();
-            containerBuilder.RegisterType<ConsoleReader>().As<IReader>().SingleInstance();
-            containerBuilder.RegisterType<ConsoleWriter>().As<IWriter>().SingleInstance();
-            containerBuilder.RegisterType<Engine>().As<IEngine>();
-
+            containerBuilder.RegisterModule(new AutofacConfig.AutofacConfig());
             var container = containerBuilder.Build();
 
             var engine = container.Resolve<IEngine>();

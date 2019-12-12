@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using TaxCalculator.Models;
 
 namespace TaxCalculator.Infrastructure
 {
@@ -9,7 +11,7 @@ namespace TaxCalculator.Infrastructure
     {
         public static decimal ValidateSalary(string salary)
         {
-            if (salary == null)
+            if (string.IsNullOrWhiteSpace(salary))
             {
                 throw new ArgumentException("Please provide a non-negative gross salary figure or exit the program");
             }
@@ -19,36 +21,29 @@ namespace TaxCalculator.Infrastructure
 
             if (grossSalary <= 0)
             {
-                throw new ArgumentException("Please provide a non-negative gross salary figure or exit the program");
+                throw new ArgumentException("Please provide a non-negative gross salary figure or exit the program \r\n");
             }
 
             return grossSalary;
         }
 
-        public static string ValidateCountry(string country)
+        public static void ValidateCountry(string country)
         {
-            if (country == null)
+            if (string.IsNullOrWhiteSpace(country))
             {
                 throw new ArgumentException("Please provide the name of the country");
             }
-            
-            var listOfCountries = new List<string>();
 
             string rates = File.ReadAllText(@"..\..\..\Json\rates.json");
 
             var ratesProvider = JsonConvert.DeserializeObject<IEnumerable<Rate>>(rates);
 
-            foreach (var rate in ratesProvider)
-            {
-                listOfCountries.Add(rate.Country);
-            }
+            var countries = ratesProvider.Select(r => r.Country).ToList();
 
-            if (!listOfCountries.Contains(country))
+            if (!countries.Contains(country))
             {
                 throw new ArgumentException("Please note that the country you are looking for does not exist in our database. \r\n");
             }
-
-            return country;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TaxCalculator.Infrastructure;
+﻿using TaxCalculator.Models;
 
 namespace TaxCalculator.Contracts
 {
