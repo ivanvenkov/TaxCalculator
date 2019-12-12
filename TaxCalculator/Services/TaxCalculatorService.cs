@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
 using TaxCalculator.Contracts;
 using TaxCalculator.Infrastructure;
@@ -11,13 +12,13 @@ namespace TaxCalculator.Services
 
         public TaxCalculatorService(IRatesProvider ratesProvider)
         {
-            this.ratesProvider = LoadJson(ratesProvider);
-        }              
-
-        public Calculation CalculateNetSalary(decimal grossSalary)
+            this.ratesProvider = ratesProvider;
+        }         
+        
+        public Calculation CalculateNetSalary(decimal grossSalary, string country)
         {
             decimal sscAmount;
-                          
+            var rate = this.ratesProvider.GetRates(country);             
 
             var taxCalculation = new Calculation(grossSalary);
 
@@ -27,31 +28,23 @@ namespace TaxCalculator.Services
             }
             else
             {
-                if (grossSalary > this.ratesProvider.IncomeTaxThreshold && grossSalary <= this.ratesProvider.SscThreshold)
+                if (grossSalary > rate.IncomeTaxThreshold && grossSalary <= rate.SscThreshold)
                 {
-                    sscAmount = (grossSalary - this.ratesProvider.IncomeTaxThreshold) * this.ratesProvider.SSCRate;
+                    sscAmount = (grossSalary - rate.IncomeTaxThreshold) * rate.SSCRate;
                 }
                 else
                 {
-                    sscAmount = (this.ratesProvider.SscThreshold - this.ratesProvider.IncomeTaxThreshold) * this.ratesProvider.SSCRate;
+                    sscAmount = (rate.SscThreshold - rate.IncomeTaxThreshold) * rate.SSCRate;
                 }
 
                 taxCalculation.SSCAmount = sscAmount;
-                taxCalculation.TaxAmount = (grossSalary - this.ratesProvider.IncomeTaxThreshold) * this.ratesProvider.IncomeTaxRate;
+                taxCalculation.TaxAmount = (grossSalary - rate.IncomeTaxThreshold) * rate.IncomeTaxRate;
                 taxCalculation.NetSalary = grossSalary - sscAmount - taxCalculation.TaxAmount;
             }
 
             return taxCalculation;
         }
 
-        private IRatesProvider LoadJson(IRatesProvider ratesProvider)
-        {
-
-            string rates = File.ReadAllText(@"..\..\..\Json\rates.json");
-
-            ratesProvider = JsonConvert.DeserializeObject<ImaginariaRateProvider>(rates);
-
-            return ratesProvider;
-        }
+        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using TaxCalculator.Contracts;
 
 namespace TaxCalculator.Infrastructure
@@ -7,7 +8,7 @@ namespace TaxCalculator.Infrastructure
     {
         public string Read()
         {
-            return Console.ReadLine();
+            return Console.ReadLine().ToLower();
         }
     }
 }

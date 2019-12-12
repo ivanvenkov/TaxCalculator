@@ -11,7 +11,7 @@ namespace TaxCalculator
         {
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterType<ImaginariaRateProvider>().As<IRatesProvider>();
+            containerBuilder.RegisterType<RatesProvider>().As<IRatesProvider>();
             containerBuilder.RegisterType<TaxCalculatorService>().As<ITaxCalculatorService>();
             containerBuilder.RegisterType<ConsoleReader>().As<IReader>().SingleInstance();
             containerBuilder.RegisterType<ConsoleWriter>().As<IWriter>().SingleInstance();

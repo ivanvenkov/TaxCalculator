@@ -22,9 +22,9 @@ namespace TaxCalculator.Infrastructure
             while (true)
             {
                 WriteCommand("Please enter the gross salary figure:");
-                var input = ReadCommand();
+                var salary = ReadCommand();
 
-                if (input.ToLower() == "exit")
+                if (salary.ToLower() == "exit")
                 {
                     WriteCommand("Do you want to exit the program? Y/N");
                     var answer = ReadCommand().ToLower();
@@ -32,12 +32,37 @@ namespace TaxCalculator.Infrastructure
                     {
                         Environment.Exit(0);
                     }
+                    else
+                    {
+                        continue;
+                    }
                 }
+
+                decimal grossSalary;
 
                 try
                 {
-                    var grossSalary = InputValidator.Validate(input);
-                    var result = this.taxCalculatorService.CalculateNetSalary(grossSalary);
+                    grossSalary = InputValidator.ValidateSalary(salary);
+                   // var countryName = InputValidator.ValidateCountry(country);
+                   // var result = this.taxCalculatorService.CalculateNetSalary(grossSalary, country);
+                   // WriteCommand(Printer.PrintResult(result));
+                }
+                catch (ArgumentException ex)
+                {
+
+                    WriteCommand(ex.Message);
+                    continue;
+                }
+
+
+                WriteCommand("Please enter the country:");
+                var country = ReadCommand();
+
+                try
+                {
+                    grossSalary = InputValidator.ValidateSalary(salary);
+                    var countryName = InputValidator.ValidateCountry(country);
+                    var result = this.taxCalculatorService.CalculateNetSalary(grossSalary, country);
                     WriteCommand(Printer.PrintResult(result));
                 }
                 catch (ArgumentException ex)
@@ -45,6 +70,8 @@ namespace TaxCalculator.Infrastructure
 
                     WriteCommand(ex.Message);
                 }
+
+
             }
         }
         private string ReadCommand()
@@ -53,7 +80,8 @@ namespace TaxCalculator.Infrastructure
         }
         private void WriteCommand(string message)
         {
-           this.writer.Write(message);
+            this.writer.Write(message);
+            
         }
     }
 }
