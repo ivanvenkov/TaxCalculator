@@ -7,15 +7,19 @@ namespace TaxCalculator.Services
     {
         private IRatesProvider ratesProvider;
 
+        public TaxCalculatorService()
+        {
+
+        }
         public TaxCalculatorService(IRatesProvider ratesProvider)
         {
             this.ratesProvider = ratesProvider;
-        }         
-        
+        }
+
         public Calculation CalculateNetSalary(decimal grossSalary, string country)
         {
             decimal sscAmount;
-            var rate = this.ratesProvider.GetRates(country);             
+            var rate = this.ratesProvider.GetRates(country);
 
             var taxCalculation = new Calculation(grossSalary);
 
@@ -41,7 +45,5 @@ namespace TaxCalculator.Services
 
             return taxCalculation;
         }
-
-        
     }
 }

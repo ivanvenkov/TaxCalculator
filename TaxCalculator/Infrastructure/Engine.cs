@@ -15,8 +15,6 @@ namespace TaxCalculator.Infrastructure
             this.reader = reader;
             this.writer = writer;
         }
-
-
         public void Run()
         {
             while (true)
@@ -33,10 +31,6 @@ namespace TaxCalculator.Infrastructure
                         if (answer == "y")
                         {
                             Environment.Exit(0);
-                        }
-                        else
-                        {
-                            continue;
                         }
                     }
 
@@ -60,7 +54,6 @@ namespace TaxCalculator.Infrastructure
                 }
             }
         }
-
         private string ReadCommand()
         {
             return this.reader.Read();
@@ -68,7 +61,6 @@ namespace TaxCalculator.Infrastructure
         private void WriteCommand(string message)
         {
             this.writer.Write(message);
-
         }
     }
 }

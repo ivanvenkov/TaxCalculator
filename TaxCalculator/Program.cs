@@ -1,7 +1,5 @@
 ﻿using Autofac;
 using TaxCalculator.Contracts;
-using TaxCalculator.Infrastructure;
-using TaxCalculator.Services;
 
 namespace TaxCalculator
 {

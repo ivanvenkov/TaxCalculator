@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TaxCalculator.Contracts;
+using TaxCalculator.Infrastructure;
 using TaxCalculator.Models;
 using TaxCalculator.Services;
 
@@ -10,10 +11,10 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
     public class CalculateNetSalary_Should
     {
         [TestMethod]
-        public void ReturnCorrectNetSalayry_WhenGrossSalaryIsBelow1000()
+        public void ReturnCorrectNetSalayry_WhenGrossSalaryIsBelowOrEuqalTo1000()
         {
             var grossSalaryMocked = 1000m;
-            var countryMocked = "Brazil";
+            var countryMocked = "Country";
 
             var rateMocked = new Rate()
             {
@@ -25,10 +26,10 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
             };
 
             var ratesProvider = new Mock<IRatesProvider>();
-                ratesProvider.Setup(x => x.GetRates(countryMocked)).Returns(rateMocked);
+            ratesProvider.Setup(x => x.GetRates(countryMocked)).Returns(rateMocked);
 
             var sut = new TaxCalculatorService(ratesProvider.Object);
-                        
+
             var netSalaryMocked = sut.CalculateNetSalary(grossSalaryMocked, countryMocked);
 
             Assert.AreEqual(1000, netSalaryMocked.NetSalary);
@@ -38,7 +39,8 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
         public void ReturnCorrectNetSalayry_WhenGrossSalaryIsBetween1000And3000()
         {
             var grossSalaryMocked = 1001m;
-            var countryMocked = "Brazil";
+            var countryMocked = "Country";
+            var expectedNetSalary = 1001m - 0.25m;
 
             var rateMocked = new Rate()
             {
@@ -56,14 +58,15 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
 
             var netSalaryMocked = sut.CalculateNetSalary(grossSalaryMocked, countryMocked);
 
-            Assert.AreEqual(1001m-0.25m, netSalaryMocked.NetSalary);
+            Assert.AreEqual(expectedNetSalary, netSalaryMocked.NetSalary);
         }
 
         [TestMethod]
         public void ReturnCorrectNetSalayry_WhenGrossSalaryIsAbove3000()
         {
-            var grossSalaryMocked = 3400m;
-            var countryMocked = "Brazil";
+            var grossSalaryMocked = 3001m;
+            var countryMocked = "Country";
+            var expectedNetSalary = 3001m - 300m - 200.1m;
 
             var rateMocked = new Rate()
             {
@@ -81,8 +84,7 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
 
             var netSalaryMocked = sut.CalculateNetSalary(grossSalaryMocked, countryMocked);
 
-            Assert.AreEqual(2860, netSalaryMocked.NetSalary);
+            Assert.AreEqual(expectedNetSalary, netSalaryMocked.NetSalary);
         }
-
     }
 }

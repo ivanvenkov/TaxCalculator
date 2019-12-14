@@ -5,6 +5,10 @@ namespace TaxCalculator.Models
 {
     public class Calculation
     {
+        public Calculation()
+        {
+
+        }
         public Calculation(decimal grossSalary)
         {
             this.GrossSalary = grossSalary;
@@ -24,7 +28,6 @@ namespace TaxCalculator.Models
             sb.AppendLine($"Net Salary: {NetSalary:f2} IDR");
             Console.WriteLine();
             return sb.ToString();
-
         }
     }
 }
