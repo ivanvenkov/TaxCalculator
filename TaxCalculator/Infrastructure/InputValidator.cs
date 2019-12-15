@@ -21,7 +21,7 @@ namespace TaxCalculator.Infrastructure
 
             if (grossSalary <= 0)
             {
-                throw new ArgumentException("Please provide a non-negative gross salary figure or exit the program \r\n");
+                throw new ArgumentException("Please provide a non-negative gross salary figure or exit the program");
             }
 
             return grossSalary;

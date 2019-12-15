@@ -13,6 +13,7 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
         [DataRow("exit")]
         public void QuitsEngineExecution_WhenExitIsInput(string input)
         {
+
             var taxServiceMock = new Mock<ITaxCalculatorService>();
             var writerMock = new Mock<IWriter>();
             var readerMock = new Mock<IReader>();
@@ -25,9 +26,9 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
 
             sut.Run();
 
-            //readerMock.Verify(r => r.Read(), Times.Exactly(2));
-            //writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please enter the gross salary figure:")), Times.Once);
-            //writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Do you want to exit the program? Y/N")), Times.Once);
+            readerMock.Verify(r => r.Read(), Times.Exactly(2));
+            writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please enter the gross salary figure:")), Times.Once);
+            writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Do you want to exit the program? Y/N")), Times.Once);
         }
 
         [DataTestMethod]
@@ -50,9 +51,9 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
 
             sut.Run();
 
-            //writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please enter the gross salary figure:")), Times.Exactly(2));
-            //writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Do you want to exit the program? Y/N")), Times.Once);
-            //writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please provide a non-negative gross salary figure or exit the program")), Times.Once);
+            writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please enter the gross salary figure:")), Times.Exactly(2));
+            writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Do you want to exit the program? Y/N")), Times.Once);
+            writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please provide a non-negative gross salary figure or exit the program")), Times.Once);
         }
 
         [TestMethod]
@@ -72,10 +73,9 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
 
             sut.Run();
 
-            //writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please enter the gross salary figure:")), Times.Exactly(2));
-            //writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Do you want to exit the program? Y/N")), Times.Once);
-            //writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please enter the country:")), Times.Once);
-            //writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please provide a non-negative gross salary figure or exit the program")), Times.Once);
+            writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please enter the gross salary figure:")), Times.Exactly(2));
+            writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Do you want to exit the program? Y/N")), Times.Once);
+            writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please enter the country:")), Times.Once);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TaxCalculator.Contracts;
-using TaxCalculator.Infrastructure;
 using TaxCalculator.Models;
 using TaxCalculator.Services;
 

@@ -30,7 +30,7 @@ namespace TaxCalculator.Infrastructure
                         var answer = ReadCommand();
                         if (answer == "y")
                         {
-                            Environment.Exit(0);
+                            return;
                         }
                     }
 

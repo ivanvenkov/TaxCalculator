@@ -7,10 +7,6 @@ namespace TaxCalculator.Services
     {
         private IRatesProvider ratesProvider;
 
-        public TaxCalculatorService()
-        {
-
-        }
         public TaxCalculatorService(IRatesProvider ratesProvider)
         {
             this.ratesProvider = ratesProvider;

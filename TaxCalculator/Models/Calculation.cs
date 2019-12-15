@@ -5,10 +5,6 @@ namespace TaxCalculator.Models
 {
     public class Calculation
     {
-        public Calculation()
-        {
-
-        }
         public Calculation(decimal grossSalary)
         {
             this.GrossSalary = grossSalary;
