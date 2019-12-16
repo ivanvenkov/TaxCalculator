@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 using TaxCalculator.Contracts;
 using TaxCalculator.Infrastructure;
 
@@ -17,12 +18,13 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
             var taxServiceMock = new Mock<ITaxCalculatorService>();
             var writerMock = new Mock<IWriter>();
             var readerMock = new Mock<IReader>();
+            var inputValidatorMock = new Mock<IInputValidator>();
 
             readerMock.SetupSequence(s => s.Read())
                 .Returns(input)
                 .Returns("y");
 
-            var sut = new Engine(taxServiceMock.Object, readerMock.Object, writerMock.Object);
+            var sut = new Engine(taxServiceMock.Object, readerMock.Object, writerMock.Object, inputValidatorMock.Object);
 
             sut.Run();
 
@@ -41,19 +43,21 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
             var taxServiceMock = new Mock<ITaxCalculatorService>();
             var writerMock = new Mock<IWriter>();
             var readerMock = new Mock<IReader>();
+            var inputValidatorMock = new Mock<IInputValidator>();
 
             readerMock.SetupSequence(s => s.Read())
                 .Returns(salary)
                 .Returns("exit")
                 .Returns("y");
 
-            var sut = new Engine(taxServiceMock.Object, readerMock.Object, writerMock.Object);
+            inputValidatorMock.Setup(x => x.ValidateSalary(salary)).Throws<ArgumentException>();
+
+            var sut = new Engine(taxServiceMock.Object, readerMock.Object, writerMock.Object, inputValidatorMock.Object);
 
             sut.Run();
 
             writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please enter the gross salary figure:")), Times.Exactly(2));
             writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Do you want to exit the program? Y/N")), Times.Once);
-            writerMock.Verify(w => w.Write(It.Is<string>(wr => wr == "Please provide a non-negative gross salary figure or exit the program")), Times.Once);
         }
 
         [TestMethod]
@@ -62,6 +66,7 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
             var taxServiceMock = new Mock<ITaxCalculatorService>();
             var writerMock = new Mock<IWriter>();
             var readerMock = new Mock<IReader>();
+            var inputValidatorMock = new Mock<IInputValidator>();
 
             readerMock.SetupSequence(s => s.Read())
                 .Returns("1000")
@@ -69,7 +74,9 @@ namespace TaxCalculator.Tests.TaxCalculatorServiceTests
                 .Returns("exit")
                 .Returns("y");
 
-            var sut = new Engine(taxServiceMock.Object, readerMock.Object, writerMock.Object);
+            inputValidatorMock.Setup(x => x.ValidateSalary("1000")).Returns(1000m);
+
+            var sut = new Engine(taxServiceMock.Object, readerMock.Object, writerMock.Object, inputValidatorMock.Object);
 
             sut.Run();
 

@@ -6,14 +6,16 @@ namespace TaxCalculator.Infrastructure
     public class Engine : IEngine
     {
         private readonly ITaxCalculatorService taxCalculatorService;
+        private readonly IInputValidator inputValidator;
         private readonly IReader reader;
         private readonly IWriter writer;
 
-        public Engine(ITaxCalculatorService taxCalculatorService, IReader reader, IWriter writer)
+        public Engine(ITaxCalculatorService taxCalculatorService, IReader reader, IWriter writer, IInputValidator inputValidator)
         {
             this.taxCalculatorService = taxCalculatorService;
             this.reader = reader;
             this.writer = writer;
+            this.inputValidator = inputValidator;
         }
         public void Run()
         {
@@ -34,12 +36,12 @@ namespace TaxCalculator.Infrastructure
                         }
                     }
 
-                    decimal grossSalary = InputValidator.ValidateSalary(salary);
+                    decimal grossSalary = this.inputValidator.ValidateSalary(salary);
 
                     WriteCommand("Please enter the country:");
                     var country = ReadCommand();
 
-                    InputValidator.ValidateCountry(country);
+                    this.inputValidator.ValidateCountry(country);
                     var result = this.taxCalculatorService.CalculateNetSalary(grossSalary, country);
 
                     WriteCommand(result.ToString());

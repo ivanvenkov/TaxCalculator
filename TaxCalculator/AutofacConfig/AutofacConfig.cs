@@ -10,6 +10,7 @@ namespace TaxCalculator.AutofacConfig
         protected override void Load(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterType<RatesProvider>().As<IRatesProvider>();
+            containerBuilder.RegisterType<InputValidator>().As<IInputValidator>();
             containerBuilder.RegisterType<TaxCalculatorService>().As<ITaxCalculatorService>();
             containerBuilder.RegisterType<ConsoleReader>().As<IReader>().SingleInstance();
             containerBuilder.RegisterType<ConsoleWriter>().As<IWriter>().SingleInstance();

@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TaxCalculator.Contracts;
 using TaxCalculator.Models;
 
 namespace TaxCalculator.Infrastructure
 {
-    public static class InputValidator
+    public class InputValidator : IInputValidator
     {
-        public static decimal ValidateSalary(string salary)
+        public decimal ValidateSalary(string salary)
         {
             if (string.IsNullOrWhiteSpace(salary))
             {
@@ -17,7 +18,7 @@ namespace TaxCalculator.Infrastructure
             }
             decimal grossSalary;
 
-            bool getCorrrectSalary = decimal.TryParse(salary, out grossSalary);
+            decimal.TryParse(salary, out grossSalary);
 
             if (grossSalary <= 0)
             {
@@ -27,7 +28,7 @@ namespace TaxCalculator.Infrastructure
             return grossSalary;
         }
 
-        public static void ValidateCountry(string country)
+        public void ValidateCountry(string country)
         {
             if (string.IsNullOrWhiteSpace(country))
             {
